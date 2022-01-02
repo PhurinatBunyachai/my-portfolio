@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export default function NotFound() {
   const history = useHistory();
-  const routeChange = () =>{ 
+  const backtoHome = () =>{ 
     history.push(`/`);
   }
     return (
@@ -12,7 +12,7 @@ export default function NotFound() {
             <Img src='/imgs/404.png' />
             <Wrapper>
               <h1>404 Not Fonud</h1>
-              <Button onClick={() => routeChange()}>Go Back</Button>
+              <Button onClick={() => backtoHome()}>Go Back</Button>
             </Wrapper>
       </Container>
     )
