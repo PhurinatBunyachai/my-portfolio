@@ -10,7 +10,7 @@ export default function Header() {
     useEffect(() => {
         const options = {
             strings: [
-            'Phurinat❤️',
+            'Phurinat...',
           ],
           typeSpeed: 200,
           backSpeed: 50,
@@ -29,10 +29,10 @@ export default function Header() {
 
     return (
         <Container>
-            <Logo>
+            <Logo onClick={() => {window.location = '/'}}>
                 <span ref={el}></span>
             </Logo>
-            <Menu>
+            {/* <Menu>
                <div className='active' onClick={() => {openPage('Home')}}>
                    Home
                </div>
@@ -42,7 +42,7 @@ export default function Header() {
                <div>
                    Contract
                </div>
-            </Menu>
+            </Menu> */}
         </Container>
     )
 }
@@ -60,6 +60,7 @@ const Container = styled.div`
    
 `
 const Logo = styled.div`
+    cursor: pointer;
     span{
         font-size: 24px;
     }
@@ -69,9 +70,9 @@ const Menu = styled.div`
     flex-direction: row;
     justify-content:start;
     gap: 10px;
-    cursor: pointer
+    cursor: pointer;
      .active {
-        color: red;
+        color: #ff002a;
     }
     
 `
