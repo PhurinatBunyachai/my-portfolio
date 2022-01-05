@@ -1,15 +1,28 @@
-import React,{useEffect,useRef} from 'react'
+import React,{useEffect,useRef,useState} from 'react'
 import styled from 'styled-components'
 import Typed from 'typed.js';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {
+    Navigation,
+    Pagination
+  } from 'swiper';
+import "swiper/css";
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+SwiperCore.use([Pagination,Navigation]);
+
 export default function Home() {
     const el = useRef(null);
     const typed = useRef(null);
+    const [currentIndex , setCurrentIndex] = useState(0);
+    const workHistory =  ["iRecruit","ASN Broker","SAHAPAT SPC"];
+
     useEffect(() => {
         const options = {
             strings: [
-            'Experience Detail',
+                `${workHistory[currentIndex]} Experience Detail`,
           ],
-          typeSpeed: 100,
+          typeSpeed: 70,
           backSpeed: 50,
           smartBackspace: true 
         };
@@ -17,7 +30,7 @@ export default function Home() {
         return () => {
             typed.current.destroy();
         }
-    })
+    },[currentIndex])
 
     return (
         <Container>
@@ -46,77 +59,108 @@ export default function Home() {
                 <div className='title'>
                     <span ref={el}></span>
                 </div>
+                <Swiper 
+                    loop={true}
+                    navigation={true} 
+                    onSlideChange={(swiper) => {
+                        const {
+                            realIndex
+                          } = swiper;
+                          setCurrentIndex(realIndex);
+                    }}
+                >
+                <SwiperSlide>
                 <div className='work-description'>
-                    <div className='img-left'>
+                    <div className='img'>
                         <img src='/imgs/work.png'  width={250} height={250}/>
                     </div>
-                    <div>
-                        <p className='work-name'>1.iRecruit (Position: Dev)</p>
+                    <div className='description-container'>
+                        <p className='work-name'>1. {workHistory[currentIndex]} (Position: Dev)</p>
                         <p className='work-title'>Responsibility Project</p>
                         <p className='project-name'>
-                           1. Thai Government Register 
+                           <span>1. Thai Government Recruit </span>
+                        </p>
+                        <p className='project-about'>
+                            This web application for recruiting goverment employee each goverment unit
                         </p>
                         <p className='project-name'>
-                           2. Student Register 
+                            <span> 2. Student Register </span>
+                        </p>
+                        <p className='project-about'>
+                            This web application for Register Student in Technical College
                         </p>
                         <p className='project-name'>
-                           3. Contractor Tracking
+                            <span>3. Contractor Tracking</span>
                         </p>
-                        <p className='work-title'>Stack && Tools</p>
+                        <p className='project-about'>
+                            This web application for tracking contractor because in a day many contractor 
+                            start working in factory 
+                        </p>
+                        <p className='work-title'>Stack and Tools</p>
                         <p>
                            php (Laravel) , MYSQL ,Line Notify
                         </p>
-                        
-
                     </div>
                 </div>
+                </SwiperSlide>
+                <SwiperSlide>
                 <div className='work-description'>
-                    <div className='img-right'>
+                    <div className='img'>
                         <img src='/imgs/work_2.png'  width={250} height={250}/>
                     </div>
-                    <div>
-                        <p className='work-name'>1.iRecruit (Position: Dev)</p>
+                    <div className='description-container'>
+                        <p className='work-name'>2. {workHistory[currentIndex]} (Position: Full-Stack)</p>
                         <p className='work-title'>Responsibility Project</p>
                         <p className='project-name'>
-                           1. Thai Government Register 
+                           <span> 1. Loan System </span> 
                         </p>
-                        <p className='project-name'>
-                           2. Student Register 
+                        <p className='project-about'>
+                            This web application for customer can be loaner 
                         </p>
-                        <p className='project-name'>
-                           3. Contractor Tracking
-                        </p>
-                        <p className='work-title'>Stack && Tools</p>
+                        <p className='work-title'>Stack and Tools</p>
                         <p>
-                           php (Laravel) , MYSQL ,Line Notify
+                           php(Laravel) , MYSQL, VueJs , MongoDB
                         </p>
                     </div>
                 </div>
+                </SwiperSlide>
+                <SwiperSlide>
                 <div className='work-description'>
-                    <div className='img-left'>
+                    <div className='img'>
                         <img src='/imgs/work_3.png'  width={250} height={250}/>
                     </div>
-                    <div>
-                        <p className='work-name'>1.iRecruit (Position: Dev)</p>
+                    <div className='description-container'>
+                        <p className='work-name'>3. {workHistory[currentIndex]} (Position: Full-Stack)</p>
                         <p className='work-title'>Responsibility Project</p>
                         <p className='project-name'>
-                           1. Thai Government Register 
+                            <span> 1. MAMA Lucky</span>
+                        </p>
+                        <p className='project-about'>
+                            This web application for register code on instant noodle cup 
                         </p>
                         <p className='project-name'>
-                           2. Student Register 
+                            <span>2. E-commerce SPC</span>
+                        </p>
+                        <p className='project-about'>
+                              Own E-commerce SPC
                         </p>
                         <p className='project-name'>
-                           3. Contractor Tracking
+                            <span>3. Sale System </span>
                         </p>
-                        <p className='work-title'>Stack && Tools</p>
+                        <p className='project-about'>
+                            This web application for sale SPC product to retail store
+                        </p>
+                        <p className='work-title'>Stack and Tools</p>
                         <p>
-                           php (Laravel) , MYSQL ,Line Notify
+                           php (Laravel) , Oracel DB ,Line Liff, ReactJs
                         </p>
-                        
-
                     </div>
                 </div>
+                </SwiperSlide>
+                </Swiper>
+                
             </DescriptionContainer>
+           
         </Container>
     )
 }
@@ -179,7 +223,7 @@ const ContainerBar = styled.div`
 `
 
 const DescriptionContainer = styled.div`
-        display: flex;
+        display: block;
         flex-direction: column;
         justify-content:start;
         border: 3px solid;
@@ -187,21 +231,12 @@ const DescriptionContainer = styled.div`
         height: 750px;
         border-radius: 4px;
         padding: 20px;
-        overflow: overlay;
-
-        ::-webkit-scrollbar {
-            width: 10px;
-          }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        white-space: normal;
+        .swiper-pagination{
+            padding-bottom: 10px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #17adff; 
-            border-radius: 4px;
-        }
-          
-        ::-webkit-scrollbar-thumb:hover {
-            background: #28a4e9; 
+        .swiper-button-next{
+            font-size: 20px !important;
         }
         .title{
             text-align: center;
@@ -212,26 +247,52 @@ const DescriptionContainer = styled.div`
         .work-description{
             border: 3px solid;
             margin-bottom: 10px;
-            padding: 10px;
+            height: 670px;
             border-radius: 4px;
-                .img-left{
-                    float:left;
-                }
-                .img-right{
-                    float:right;
-                }
+            overflow: overlay;
+            ::-webkit-scrollbar {
+                width: 5px;
+              }
+              :-webkit-scrollbar-track {
+                background: #f1f1f1; 
+              }
+               
+              /* Handle */
+              ::-webkit-scrollbar-thumb {
+                background: #888; 
+                border-radius: 4px;
+              }
+              
+              /* Handle on hover */
+              ::-webkit-scrollbar-thumb:hover {
+                background: #555; 
+              }
+            .img{
+                text-align: center;
+            }
+            .description-container{
+                padding-left: 50px;
+                padding-right: 50px;
+            }
         }
         .work-name{
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .work-title{
             font-size: 20px;
             font-weight: bold;
         }
 
-        .work-title{
-            font-weight: bold;
-        }
-
         .project-name{
-            font-weight: bold;
-            text-indent: 20px;
+            text-indent: 15px;
+            span{
+                font-weight: bold;
+            }
+        }
+        .project-about{
+            text-indent: 36px; 
         }
 `

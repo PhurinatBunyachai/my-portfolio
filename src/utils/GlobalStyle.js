@@ -1,13 +1,9 @@
  
 import {createGlobalStyle} from 'styled-components';
-
 const GlobalStyle = createGlobalStyle`
     @font-face {
-      font-family: 'Nunito' ;
-      src: url('Nunito-Regular.ttf') format('ttf');
-      font-weight: 100;
-      font-style: normal;
-      font-display: swap;
+      font-family: 'Nunito';
+      src: url(/fonts/Nunito-Regular.ttf) ;
     }
 
     html,body , #root{
@@ -15,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
       height: 100%;
       margin : 0;
       padding : 0;
-      font-family: 'Nunito';
+      font-family: Nunito;
       background-color: #FFFFFF ;
     }
     
