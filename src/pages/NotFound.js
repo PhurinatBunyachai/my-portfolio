@@ -42,6 +42,7 @@ const Button  = styled.button`
   padding : 20px;
   width: calc(100% + 50px);
   cursor: pointer;
+  font-family: 'Nunito'
 `
 const Wrapper  = styled.div`
   display: flex;
