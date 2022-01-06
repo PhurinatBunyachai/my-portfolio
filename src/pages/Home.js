@@ -27,6 +27,7 @@ export default function Home() {
           smartBackspace: true 
         };
         typed.current = new Typed(el.current, options);
+        document.title = `Phurinat-${workHistory[currentIndex]}`
         return () => {
             typed.current.destroy();
         }
