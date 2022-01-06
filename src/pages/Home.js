@@ -225,11 +225,11 @@ const ContainerBar = styled.div`
 
 const DescriptionContainer = styled.div`
         display: block;
-        flex-direction: column;
-        justify-content:start;
         border: 3px solid;
         width: 600px;
+        min-width: 200px;
         height: 750px;
+        min-height: 200px;
         border-radius: 4px;
         padding: 20px;
         white-space: normal;
