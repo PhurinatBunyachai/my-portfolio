@@ -1,5 +1,5 @@
 import React,{useEffect,useRef} from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory,useLocation  } from 'react-router-dom';
 import styled from 'styled-components'
 import Typed from 'typed.js';
 export default function Header() {
@@ -7,6 +7,9 @@ export default function Header() {
     const el = useRef(null);
     const typed = useRef(null);
     const history = useHistory();
+    const {pathname} = useLocation();
+    const [empty,prefix] = pathname.split("/")
+
     useEffect(() => {
         const options = {
             strings: [
@@ -23,8 +26,8 @@ export default function Header() {
     })
 
    
-    const openPage = (path) =>{ 
-        history.push(`/${path}`);
+    const openPage = (path ='/') =>{ 
+        history.push(`${path}`);
     }
 
     return (
@@ -32,17 +35,17 @@ export default function Header() {
             <Logo onClick={() => {window.location = '/'}}>
                 <span ref={el}></span>
             </Logo>
-            {/* <Menu>
-               <div className='active' onClick={() => {openPage('Home')}}>
+            <Menu>
+               <div className={`${prefix == '' ? 'active' : '' }`} onClick={() => {openPage()}}>
                    Home
                </div>
-               <div onClick={() => {openPage('About')}}>
+               <div className={`${prefix == 'About' ? 'active' : '' }`} onClick={() => {openPage('/About')}}>
                    About
                </div>
-               <div>
+               <div className={`${prefix == 'Contract' ? 'active' : '' }`}>
                    Contract
                </div>
-            </Menu> */}
+            </Menu>
         </Container>
     )
 }

@@ -29,7 +29,9 @@ const Container = styled.div`
 
 const Img = styled.img`
   width: 500px;
+  min-width: 200px;
   height: 500px;
+  min-height: 200px;
 `
 
 const Button  = styled.button`
