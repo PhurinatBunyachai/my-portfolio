@@ -37,7 +37,7 @@ export default function Home() {
             <BrowserContainer>
                 <ContainerBar>
                 <div>
-                    MY RESUME
+                    MY RESUMEssss
                 </div>
                 <div className='btn-wapper'>
                     <span className="dot-resize"></span>
